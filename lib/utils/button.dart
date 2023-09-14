@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ecommerce/utils/colors.dart';
 
-import 'helpers.dart';
-import 'size.dart';
-
 class CommonButton extends StatelessWidget {
   final String? label;
   final EdgeInsetsGeometry padding;
@@ -145,25 +142,16 @@ class _CommonButtonV1State extends State<CommonButtonV1> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(32),
           ),
-          backgroundColor: Colors.red.withOpacity(0.7),
+          backgroundColor: widget.bgColor ?? Colors.red.withOpacity(0.7),
           elevation: 4.0,
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.play_circle_fill_rounded,
-              size: 24,
-              color: Colors.white,
+        child: Center(
+          child: Text(
+            widget.label,
+            style: context.textTheme.titleMedium!.copyWith(
+              color: AppColors.white,
             ),
-            const SizeBoxV(h8),
-            Text(
-              widget.label,
-              style: context.textTheme.titleMedium!.copyWith(
-                color: AppColors.white,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.bgColor,
       body: SizedBox(
         height: context.height,
         child: AnimationLimiter(
@@ -64,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       TextSpan(
                         text: "OWP",
                         style: context.textTheme.displayLarge!.copyWith(
-                          color: AppColors.white,
+                          color: AppColors.black,
                           letterSpacing: 5,
                         ),
                       ),

@@ -1,4 +1,5 @@
 import 'package:ecommerce/utils/colors.dart';
+import 'package:ecommerce/utils/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -271,7 +272,7 @@ class ProfileMenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var iconColor = AppColors.black;
+    var iconColor = AppColors.secondary;
 
     return ListTile(
       onTap: onPress,
@@ -296,7 +297,7 @@ class ProfileMenuWidget extends StatelessWidget {
                 color: Colors.grey.withOpacity(0.1),
               ),
               child: const Icon(Icons.arrow_forward_ios_outlined,
-                  size: 18.0, color: Colors.grey))
+                  size: 18.0, color: Colors.blueGrey))
           : null,
     );
   }
@@ -332,7 +333,7 @@ class ProfileScreen extends StatelessWidget {
                 const SizedBox(height: 10),
                 Text("PRANAV PV",
                     style: Theme.of(context).textTheme.headlineMedium),
-                Text("tProfileSubHeading",
+                Text("wallet: 20",
                     style: Theme.of(context).textTheme.bodyMedium),
 
                 const SizedBox(height: 30),
@@ -348,7 +349,9 @@ class ProfileScreen extends StatelessWidget {
                 ProfileMenuWidget(
                     title: "Orders",
                     icon: Icons.delivery_dining,
-                    onPress: () {}),
+                    onPress: () {
+                      Get.toNamed(AppRoutes.orderScreen);
+                    }),
                 ProfileMenuWidget(
                     title: "Address",
                     icon: Icons.home_outlined,
@@ -370,7 +373,7 @@ class ProfileScreen extends StatelessWidget {
                 ProfileMenuWidget(
                     title: "Logout",
                     icon: Icons.logout_outlined,
-                    textColor: Colors.red,
+                    //textColor: Colors.red,
                     endIcon: false,
                     onPress: () {
                       Get.defaultDialog(
