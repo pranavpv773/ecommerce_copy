@@ -3,7 +3,6 @@ import 'package:dio/dio.dart';
 import 'package:ecommerce/backend/api_urls.dart';
 import 'package:ecommerce/module/home/model/banner_model.dart';
 import 'package:ecommerce/module/home/model/get_wallet_model.dart';
-import 'package:ecommerce/module/home/model/post_purchase_model.dart';
 import 'package:ecommerce/module/home/model/url_model.dart';
 import 'package:ecommerce/module/onboarding/model/userModel.dart';
 import 'package:ecommerce/utils/apppref.dart';
@@ -63,25 +62,6 @@ class HomeServices extends Endpoints {
     }
   }
 
-  Future<PostPurchaseModel> postPurchaseTicketService(
-      {required dynamic data}) async {
-    try {
-      final response = await dio.post(
-        purchaseTicket,
-        data: data,
-        options: Options(
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ${AppPref.userToken}',
-          },
-        ),
-      );
-      final body = postPurchaseModelFromMap(jsonEncode(response.data));
-      return body;
-    } catch (e) {
-      rethrow;
-    }
-  }
   /* USER INFO API SERVICES */
 
   Future<UserModel> userInfoService() async {

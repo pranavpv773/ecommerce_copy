@@ -9,4 +9,5 @@ class AppRoutes {
   static const privacyPolicyScreen = '/privacyPolicy';
   static const orderScreen = '/orderScreen';
   static const productDescriptionScreen = '/productDescriptionScreen';
+  static const myProductScreen = '/myProductScreen';
 }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ecommerce/utils/colors.dart';
 
-import 'animations/animate_search.dart';
-
 class CommonScaffold extends StatefulWidget {
   final Widget child;
   const CommonScaffold({
@@ -28,25 +26,25 @@ class _CommonScaffoldState extends State<CommonScaffold> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    SearchBarAnimation(
-                      trailingWidget: const Icon(Icons.search),
-                      secondaryButtonWidget: const Icon(Icons.close_rounded),
-                      buttonWidget: const Icon(Icons.search),
-                      textEditingController: TextEditingController(),
-                      isOriginalAnimation: false,
-                      buttonBorderColour: Colors.black45,
-                      onFieldSubmitted: (String value) {
-                        debugPrint('onFieldSubmitted value $value');
-                      },
-                    ),
-                  ],
-                ),
-              ),
+              // Padding(
+              //   padding: const EdgeInsets.all(8.0),
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.end,
+              //     children: [
+              //       SearchBarAnimation(
+              //         trailingWidget: const Icon(Icons.search),
+              //         secondaryButtonWidget: const Icon(Icons.close_rounded),
+              //         buttonWidget: const Icon(Icons.search),
+              //         textEditingController: TextEditingController(),
+              //         isOriginalAnimation: false,
+              //         buttonBorderColour: Colors.black45,
+              //         onFieldSubmitted: (String value) {
+              //           debugPrint('onFieldSubmitted value $value');
+              //         },
+              //       ),
+              //     ],
+              //   ),
+              // ),
               widget.child,
             ],
           ),

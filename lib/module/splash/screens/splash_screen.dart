@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:ecommerce/app/app_images/app_images.dart';
 import 'package:ecommerce/utils/colors.dart';
@@ -28,59 +27,59 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgColor,
+      backgroundColor: AppColors.primary,
       body: SizedBox(
         height: context.height,
-        child: AnimationLimiter(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: AnimationConfiguration.toStaggeredList(
-              duration: const Duration(milliseconds: 375),
-              childAnimationBuilder: (widget) => SlideAnimation(
-                verticalOffset: context.height,
-                duration: const Duration(seconds: 3),
-                child: FadeInAnimation(
-                  child: widget,
-                ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // RippleWave(
+            //     childTween: ConstantTween(0.5),
+            //     // duration: const Duration(minutes: 600000),
+            //     color: AppColors.yellow,
+            //     repeat: true,
+            //     child: Center(
+            //       child: Image.asset(
+            //         AppImages.logoPath,
+            //         width: context.width * 0.3,
+            //         height: context.width * 0.3,
+            //       ),
+            //     )),
+            Center(
+              child: Image.asset(
+                AppImages.logoPath,
+                width: context.width * 0.3,
+                height: context.width * 0.3,
               ),
-              children: [
-                Center(
-                  child: Image.asset(
-                    AppImages.logoPath,
-                    width: context.width * 0.3,
-                    height: context.width * 0.3,
-                  ),
-                ),
-                const SizeBoxH(h12),
-                Center(
-                    child: RichText(
-                  // Controls visual overflow
-                  overflow: TextOverflow.clip,
-                  text: TextSpan(
-                    text: '',
-                    style: DefaultTextStyle.of(context).style,
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: "OWP",
-                        style: context.textTheme.displayLarge!.copyWith(
-                          color: AppColors.black,
-                          letterSpacing: 5,
-                        ),
-                      ),
-                      TextSpan(
-                        text: 'E-commerce',
-                        style: context.textTheme.displayLarge!.copyWith(
-                          color: AppColors.secondary,
-                          letterSpacing: 5,
-                        ),
-                      ),
-                    ],
-                  ),
-                )),
-              ],
             ),
-          ),
+            const SizeBoxH(h12),
+            Center(
+                child: RichText(
+              // Controls visual overflow
+              overflow: TextOverflow.clip,
+              text: TextSpan(
+                text: '',
+                style: DefaultTextStyle.of(context).style,
+                children: <TextSpan>[
+                  TextSpan(
+                    text: "OWPE",
+                    style: context.textTheme.displayLarge!.copyWith(
+                      color: AppColors.white,
+                      letterSpacing: 5,
+                    ),
+                  ),
+                  // TextSpan(
+                  //   text: 'E-commerce',
+                  //   style: context.textTheme.displayLarge!.copyWith(
+                  //     color: AppColors.yellow,
+                  //     letterSpacing: 5,
+                  //   ),
+                  // ),
+                ],
+              ),
+            )),
+          ],
         ),
       ),
     );

@@ -359,7 +359,9 @@ class ProfileScreen extends StatelessWidget {
                 ProfileMenuWidget(
                     title: "My Products",
                     icon: Icons.dashboard,
-                    onPress: () {}),
+                    onPress: () {
+                      Get.toNamed(AppRoutes.myProductScreen);
+                    }),
                 const Divider(),
                 const SizedBox(height: 10),
                 ProfileMenuWidget(

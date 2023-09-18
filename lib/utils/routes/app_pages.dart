@@ -34,6 +34,8 @@ class RouteGenerator {
         return pagetransition(settings, const OrderScreen());
       case AppRoutes.productDescriptionScreen:
         return pagetransition(settings, const ProductDescriptionScreen());
+      case AppRoutes.myProductScreen:
+        return pagetransition(settings, const ProductScreen());
       case AppRoutes.productScreen:
         if (args is Map) {
           return pagetransition(settings, const ProductScreen());

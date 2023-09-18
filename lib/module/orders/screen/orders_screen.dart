@@ -1,10 +1,23 @@
 import 'package:ecommerce/app/extensions.dart';
+import 'package:ecommerce/module/orders/cubit/order_cubit.dart';
 import 'package:ecommerce/utils/colors.dart';
 import 'package:ecommerce/utils/helpers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class OrderScreen extends StatelessWidget {
+class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
+
+  @override
+  State<OrderScreen> createState() => _OrderScreenState();
+}
+
+class _OrderScreenState extends State<OrderScreen> {
+  @override
+  void initState() {
+    context.read<OrderCubit>().getMyOrdersFn();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

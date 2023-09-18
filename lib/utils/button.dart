@@ -142,7 +142,8 @@ class _CommonButtonV1State extends State<CommonButtonV1> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(32),
           ),
-          backgroundColor: widget.bgColor ?? Colors.red.withOpacity(0.7),
+          backgroundColor:
+              widget.bgColor ?? AppColors.btnColor.withOpacity(0.9),
           elevation: 4.0,
         ),
         child: Center(
