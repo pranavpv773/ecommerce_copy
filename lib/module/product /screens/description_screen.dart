@@ -1,5 +1,9 @@
+import 'package:ecommerce/app/extensions.dart';
+import 'package:ecommerce/module/product%20/cubit/product_cubit.dart';
 import 'package:ecommerce/utils/animations/animate_search.dart';
+import 'package:ecommerce/utils/shimmers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductDescriptionScreen extends StatefulWidget {
   const ProductDescriptionScreen({super.key});
@@ -11,25 +15,68 @@ class ProductDescriptionScreen extends StatefulWidget {
 
 class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var description = Container(
-        padding: const EdgeInsets.all(16),
-        child: const Text(
-          "A style icon gets some love from one of today's top "
-          "trendsetters. Pharrell Williams puts his creative spin on these "
-          "shoes, which have all the clean, classicdetails of the beloved Stan Smith.",
-          textAlign: TextAlign.justify,
-          style: TextStyle(height: 1.5, color: Color(0xFF6F8398)),
-        ));
-    return Scaffold(
-        body: SafeArea(
-      child: Column(
-        children: <Widget>[
-          hero(),
-          description,
-          Property(),
-        ],
-      ),
+    context
+        .read<ProductCubit>()
+        .getProductDetailsFn(productId: context.args['id']);
+
+    return Scaffold(body: SafeArea(
+      child: BlocBuilder<ProductCubit, ProductState>(builder: (context, state) {
+        return state.productDescrStatus == ProductDescrStatus.loading
+            ? const ShimmerListTile()
+            : state.productDescrStatus == ProductDescrStatus.error
+                ? const Text('Something went wrong')
+                : Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: SingleChildScrollView(
+                      physics: const ScrollPhysics(),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          hero(
+                              image: state.productDescriptionData.images![0]
+                                  .toString()),
+                          Text(state.productDescriptionData.name.toString()),
+                          Text(state.productDescriptionData.brand == null
+                              ? 'N/A'
+                              : state.productDescriptionData.brand!.brandName
+                                  .toString()),
+                          Container(
+                              padding: const EdgeInsets.all(0),
+                              child: Text(
+                                state.productDescriptionData.description
+                                    .toString(),
+                                textAlign: TextAlign.justify,
+                                style: const TextStyle(
+                                    height: 1.5, color: Color(0xFF6F8398)),
+                              )),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text("Coin"),
+                              Text(state.productDescriptionData.price
+                                  .toString()),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text("Offer Coin"),
+                              Text(state.productDescriptionData.offerPrice
+                                  .toString()),
+                            ],
+                          ),
+                          //  Property(),
+                        ],
+                      ),
+                    ),
+                  );
+      }),
     ));
   }
 
@@ -68,16 +115,21 @@ class _ProductDescriptionScreenState extends State<ProductDescriptionScreen> {
     );
   }
 
-  Widget hero() {
+  Widget hero({required String image}) {
     return Container(
       child: Stack(
         children: <Widget>[
-          Image.asset(
-            "asset/shirt.png",
-          ), //This
-          // should be a paged
-          // view.
-
+          Container(
+            width: context.width,
+            height: context.width / 1.5,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(
+                    image,
+                  ),
+                  fit: BoxFit.contain),
+            ),
+          ),
           Positioned(
             bottom: 0,
             right: 20,

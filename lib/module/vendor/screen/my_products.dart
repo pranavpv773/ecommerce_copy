@@ -26,7 +26,7 @@ class _MyProductsState extends State<MyProducts> {
             title: const Text("Product Form"),
             centerTitle: true,
           ),
-          backgroundColor: AppColors.secondary,
+          backgroundColor: AppColors.grey,
           body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Padding(
@@ -54,7 +54,7 @@ class _MyProductsState extends State<MyProducts> {
                         ),
                       ),
                       onPressed: () {
-                        controller.addProduct();
+                        controller.addProduct(context);
                       },
                       child: const Text(
                         "Add Product",

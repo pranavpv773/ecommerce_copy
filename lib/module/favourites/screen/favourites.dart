@@ -43,30 +43,33 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
             const SizeBoxH(h12),
             state.favoriteStatus == FavoriteStatus.loading
                 ? const ShimmerListTile()
-                : GridView.builder(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 16.0,
-                    ),
-                    physics: const ScrollPhysics(),
-                    shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 200,
-                      mainAxisExtent: context.height / 2.7,
-                      childAspectRatio: 3 / 2,
-                      crossAxisSpacing: 20,
-                      mainAxisSpacing: 20,
-                    ),
-                    itemCount: state.favorites.products!.length,
-                    itemBuilder: (BuildContext ctx, index) {
-                      final item = state.favorites.products![index];
-                      return ProductCard(
-                        assetName: item.images![0],
-                        brandName: item.brand.toString(),
-                        coin: item.offerPrice.toString(),
-                        productName: item.name.toString(),
-                      );
-                    },
-                  ),
+                : state.favoriteStatus == FavoriteStatus.error
+                    ? const Center(child: Text('Something went wrong!'))
+                    : GridView.builder(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 16.0,
+                        ),
+                        physics: const ScrollPhysics(),
+                        shrinkWrap: true,
+                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 200,
+                          mainAxisExtent: context.height / 2.7,
+                          childAspectRatio: 3 / 2,
+                          crossAxisSpacing: 20,
+                          mainAxisSpacing: 20,
+                        ),
+                        itemCount: state.favorites.products!.length,
+                        itemBuilder: (BuildContext ctx, index) {
+                          final item = state.favorites.products![index];
+                          return ProductCard(
+                            productId: item.id.toString(),
+                            assetName: item.images![0],
+                            brandName: item.brand.toString(),
+                            coin: item.offerPrice.toString(),
+                            productName: item.name.toString(),
+                          );
+                        },
+                      ),
           ],
         ),
       ));
@@ -76,6 +79,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
 
 class ProductCard extends StatelessWidget {
   final String assetName;
+  final String productId;
   final String productName;
   final String brandName;
   final String coin;
@@ -85,13 +89,15 @@ class ProductCard extends StatelessWidget {
     required this.brandName,
     required this.coin,
     required this.productName,
+    required this.productId,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed(AppRoutes.productDescriptionScreen);
+        Get.toNamed(AppRoutes.productDescriptionScreen,
+            arguments: {'id': productId});
       },
       child: Material(
         borderRadius: BorderRadius.circular(10),

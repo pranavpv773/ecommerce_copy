@@ -70,7 +70,7 @@ class _LandingState extends State<Landing> {
                 height: 60.0,
                 items: const <Widget>[
                   Icon(
-                    Icons.shopping_cart_outlined,
+                    Icons.category_rounded,
                     size: 30,
                     color: Colors.white,
                   ),

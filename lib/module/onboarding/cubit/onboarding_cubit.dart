@@ -21,7 +21,7 @@ class OnboardingCubit extends Cubit<OnboardingState> with Endpoints {
 
   onboardTheUser(BuildContext context) async {
     emit(state.copyWith(loginStatus: LoginStatus.loading));
-    LoadingOverlay.of(context).show();
+
     try {
       final userOnboard = await services.userOnboarding(
         email: state.emailController.text,
@@ -34,7 +34,6 @@ class OnboardingCubit extends Cubit<OnboardingState> with Endpoints {
         ),
       );
       AppPref.userToken = state.onboardingData.accessToken.toString();
-      LoadingOverlay.of(context).hide();
       Get.offAllNamed(AppRoutes.landingScreen);
       // ignore: deprecated_member_use
     } on DioError catch (e) {

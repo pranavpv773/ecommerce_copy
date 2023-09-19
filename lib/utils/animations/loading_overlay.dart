@@ -46,7 +46,7 @@ class _FullScreenLoader extends StatelessWidget {
           ),
           Center(
             child: SpinKitDoubleBounce(
-              color: AppColors.secondary,
+              color: AppColors.primary,
               size: 70.0,
             ),
           )

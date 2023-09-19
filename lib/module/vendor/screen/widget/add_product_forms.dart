@@ -25,21 +25,29 @@ class SignupForm extends StatelessWidget {
                 // const ImageProfileAdd(),
                 AddProductTextforms(
                   icon: Icons.person_outline_outlined,
-                  text: "Label",
+                  text: "Name",
                   obscureText: false,
                   vertical: 20,
                   controller: controller.name,
                 ),
-                DescriptionTextforms(
+                AddProductTextforms(
+                  maxLines: 50,
+                  minLines: 15,
+                  icon: Icons.document_scanner_rounded,
                   text: "Description",
+                  obscureText: false,
+                  vertical: 20,
+                  prefixIcon: const SizedBox.shrink(),
                   controller: controller.description,
                 ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
                       flex: 6,
                       child: AddProductTextforms(
+                        keyboardType: TextInputType.number,
                         icon: Icons.price_check,
                         text: "Price",
                         obscureText: false,
@@ -50,6 +58,7 @@ class SignupForm extends StatelessWidget {
                     Expanded(
                       flex: 6,
                       child: AddProductTextforms(
+                        keyboardType: TextInputType.number,
                         icon: Icons.discount_outlined,
                         text: "Offer",
                         obscureText: false,
@@ -66,55 +75,22 @@ class SignupForm extends StatelessWidget {
                 //   vertical: 20,
                 //   controller: controller.category,
                 // ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      flex: 6,
-                      child: AddProductTextforms(
-                        icon: Icons.color_lens_outlined,
-                        text: "Color",
-                        obscureText: false,
-                        vertical: 15,
-                        controller: controller.color,
-                      ),
-                    ),
-                    Expanded(
-                      flex: 6,
-                      child: AddProductTextforms(
-                        icon: Icons.branding_watermark_outlined,
-                        text: "Brand",
-                        obscureText: false,
-                        vertical: 15,
-                        controller: controller.brand,
-                      ),
-                    ),
-                  ],
+
+                AddProductTextforms(
+                  keyboardType: TextInputType.number,
+                  icon: Icons.travel_explore_rounded,
+                  text: "Shipping charges",
+                  obscureText: false,
+                  vertical: 15,
+                  controller: controller.shippingCahrge,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      flex: 6,
-                      child: AddProductTextforms(
-                        icon: Icons.social_distance,
-                        text: "Size",
-                        obscureText: false,
-                        vertical: 15,
-                        controller: controller.size,
-                      ),
-                    ),
-                    Expanded(
-                      flex: 6,
-                      child: AddProductTextforms(
-                        icon: Icons.fit_screen_outlined,
-                        text: "Fit",
-                        obscureText: false,
-                        vertical: 15,
-                        controller: controller.material,
-                      ),
-                    ),
-                  ],
+                AddProductTextforms(
+                  keyboardType: TextInputType.number,
+                  icon: Icons.numbers_rounded,
+                  text: "Quantity",
+                  obscureText: false,
+                  vertical: 15,
+                  controller: controller.quantity,
                 ),
               ],
             ),

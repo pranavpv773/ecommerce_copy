@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:ecommerce/module/orders/model/orders_model.dart';
 import 'package:ecommerce/module/orders/services/order_services.dart';
+import 'package:ecommerce/utils/apppref.dart';
 import 'package:equatable/equatable.dart';
 
 part 'order_state.dart';
@@ -14,7 +15,7 @@ class OrderCubit extends Cubit<OrderState> {
     emit(state.copyWith(orderStatus: GetOrderStatus.loading));
     try {
       final list = await services.getAllOrdersAPi();
-      print(list);
+      print(AppPref.userToken);
       emit(
         state.copyWith(
           orderStatus: GetOrderStatus.loaded,

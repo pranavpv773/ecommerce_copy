@@ -4,12 +4,8 @@
 
 import 'dart:convert';
 
-import 'package:ecommerce/module/bag/model/my_bag_model.dart';
-
 MyOrderModel myOrderModelFromMap(String str) =>
     MyOrderModel.fromMap(json.decode(str));
-
-String myOrderModelToMap(MyOrderModel data) => json.encode(data.toMap());
 
 class MyOrderModel {
   int? statusCode;
@@ -31,31 +27,24 @@ class MyOrderModel {
         message: json["message"],
         status: json["status"],
       );
-
-  Map<String, dynamic> toMap() => {
-        "statusCode": statusCode,
-        "data": List<dynamic>.from(data!.map((x) => x.toMap())),
-        "message": message,
-        "status": status,
-      };
 }
 
 class OrderData {
   String? id;
   String? userId;
   ProductId? productId;
-  dynamic count;
+  int? count;
   AddressId? addressId;
   String? sellerId;
-  dynamic price;
-  dynamic productPrice;
+  int? price;
+  int? productPrice;
   String? status;
-  dynamic shippingCharge;
+  int? shippingCharge;
   String? orderDate;
-  dynamic orderStatus;
+  int? orderStatus;
   String? createdAt;
   String? updatedAt;
-  dynamic v;
+  int? v;
 
   OrderData({
     this.id,
@@ -92,24 +81,6 @@ class OrderData {
         updatedAt: json["updated_at"],
         v: json["__v"],
       );
-
-  Map<String, dynamic> toMap() => {
-        "_id": id,
-        "user_id": userId,
-        "product_id": productId!.toMap(),
-        "count": count,
-        "address_id": addressId!.toMap(),
-        "seller_id": sellerId,
-        "price": price,
-        "product_price": productPrice,
-        "status": status,
-        "shipping_charge": shippingCharge,
-        "order_date": orderDate,
-        "order_status": orderStatus,
-        "created_at": createdAt,
-        "updated_at": updatedAt,
-        "__v": v,
-      };
 }
 
 class AddressId {
@@ -161,23 +132,70 @@ class AddressId {
         updatedAt: json["updated_at"],
         v: json["__v"],
       );
+}
 
-  Map<String, dynamic> toMap() => {
-        "_id": id,
-        "user_id": userId,
-        "building_name": buildingName,
-        "full_name": fullName,
-        "phone_number": phoneNumber,
-        "landmark": landmark,
-        "city_name": cityName,
-        "district_name": districtName,
-        "pincode": pincode,
-        "country": country,
-        "is_default": isDefault,
-        "created_at": createdAt,
-        "updated_at": updatedAt,
-        "__v": v,
-      };
+class ProductId {
+  int? shippingCharges;
+  String? id;
+  String? name;
+  String? description;
+  UserId? userId;
+  int? price;
+  int? offerPrice;
+  dynamic brand;
+  Category? category;
+  List<String>? images;
+  List<String>? ratings;
+  List<String>? countriesAvailable;
+  bool? isActive;
+  String? createdAt;
+  String? updatedAt;
+  int? v;
+  int? status;
+  int? quantity;
+
+  ProductId({
+    this.shippingCharges,
+    this.id,
+    this.name,
+    this.description,
+    this.userId,
+    this.price,
+    this.offerPrice,
+    this.brand,
+    this.category,
+    this.images,
+    this.ratings,
+    this.countriesAvailable,
+    this.isActive,
+    this.createdAt,
+    this.updatedAt,
+    this.v,
+    this.status,
+    this.quantity,
+  });
+
+  factory ProductId.fromMap(Map<String, dynamic> json) => ProductId(
+        shippingCharges: json["shipping_charges"],
+        id: json["_id"],
+        name: json["name"],
+        description: json["description"],
+        userId: UserId.fromMap(json["user_id"]),
+        price: json["price"],
+        offerPrice: json["offer_price"],
+        brand: json["brand"],
+        category: Category.fromMap(json["category"]),
+        images: List<String>.from(json["images"].map((x) => x)),
+        ratings: List<String>.from(json["ratings"].map((x) => x)),
+        countriesAvailable:
+            List<String>.from(json["countries_available"].map((x) => x)),
+        isActive: json["is_active"],
+        createdAt: json["created_at"],
+        updatedAt: json["updated_at"],
+        v: json["__v"],
+        status: json["status"],
+        quantity: json["quantity"],
+      );
 }
 
 class Brand {

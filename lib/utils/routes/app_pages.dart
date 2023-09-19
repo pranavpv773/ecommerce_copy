@@ -6,6 +6,7 @@ import 'package:ecommerce/module/product%20/screens/description_screen.dart';
 import 'package:ecommerce/module/product%20/screens/product_screen.dart';
 import 'package:ecommerce/module/splash/screens/no_internet/no_internet.dart';
 import 'package:ecommerce/module/splash/screens/splash_screen.dart';
+import 'package:ecommerce/module/vendor/screen/my_products.dart';
 import 'package:ecommerce/utils/apppref.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -32,13 +33,16 @@ class RouteGenerator {
         return pagetransition(settings, const BuyNowScreen());
       case AppRoutes.orderScreen:
         return pagetransition(settings, const OrderScreen());
-      case AppRoutes.productDescriptionScreen:
-        return pagetransition(settings, const ProductDescriptionScreen());
       case AppRoutes.myProductScreen:
-        return pagetransition(settings, const ProductScreen());
+        return pagetransition(settings, const MyProducts());
       case AppRoutes.productScreen:
         if (args is Map) {
           return pagetransition(settings, const ProductScreen());
+        }
+        break;
+      case AppRoutes.productDescriptionScreen:
+        if (args is Map) {
+          return pagetransition(settings, const ProductDescriptionScreen());
         }
         break;
       default:

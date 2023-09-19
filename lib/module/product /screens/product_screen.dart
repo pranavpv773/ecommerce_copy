@@ -58,10 +58,15 @@ class _ProductScreenState extends State<ProductScreen> {
                         itemCount: state.allProductDataList.length,
                         itemBuilder: (BuildContext ctx, index) {
                           return ProductCard(
+                            productId:
+                                state.allProductDataList[index].id.toString(),
                             assetName:
                                 state.allProductDataList[index].images[3],
-                            brandName: state.allProductDataList[index].brand
-                                .toString(),
+                            brandName:
+                                state.allProductDataList[index].brand == null
+                                    ? 'N/A'
+                                    : state.allProductDataList[index].brand
+                                        .toString(),
                             coin: state.allProductDataList[index].offerPrice
                                 .toString(),
                             productName:
